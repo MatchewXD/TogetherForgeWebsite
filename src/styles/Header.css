@@ -1,0 +1,79 @@
+/* Header.css */
+
+/* General Header Styles */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1e40af;
+  color: white;
+}
+
+.header-logo a {
+  color: white;
+  text-decoration: none;
+  /* Removes the underline */
+  font-size: 1.5rem;
+  /* Adjust size */
+  font-weight: bold;
+  transition: color 0.3s ease;
+  /* Smooth hover effect */
+}
+
+.header-logo a:hover {
+  color: #93c5fd;
+  /* Light blue on hover */
+}
+
+.menu-toggle {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #93c5fd;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #1e40af;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 200px;
+    z-index: 100;
+  }
+
+  .nav-list.open {
+    display: flex;
+  }
+}

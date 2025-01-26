@@ -8,7 +8,7 @@ function IdeaForm() {
         <label>
           Type of Idea
           <select>
-            <optioin value="Full Game">Full Game</optioin>
+            <option value="Full Game">Full Game</option>
             <option value="Mechanic">Mechanic</option>
             <option value="Art Concept">Art Concept</option>
             <option value="Story Idea">Story Idea</option>
