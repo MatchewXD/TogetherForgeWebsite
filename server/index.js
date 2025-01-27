@@ -1,11 +1,12 @@
 const express = require("express");
 const PORT = 5000;
 const cors = require("cors");
-const db = require("./db");
+// const db = require("./db");
 const ideasRouter = require("./routes/ideas");
 const userRouter = require("./routes/users");
 const feedbackRouter = require("./routes/feedback");
 const votes = require("./routes/votes");
+const contact = require("./routes/contact");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use("/api/ideas", ideasRouter);
 app.use("/api/users", userRouter);
 app.use("/api/feedback", feedbackRouter);
 app.use("/api/votes", votes);
+app.use("/api/contact", contact);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Twitchy Games API!");
