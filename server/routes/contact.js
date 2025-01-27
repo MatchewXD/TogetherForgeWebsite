@@ -3,12 +3,21 @@ const router = express.Router();
 const nodemailer = require("nodemailer");
 require("dotenv").config({ path: "./server/.env" });
 
-
 router.post("/", async (req, res) => {
   const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "All fields are required" });
+  // Backend validation
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: "Name is required." });
+  }
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    return res.status(400).json({ error: "A valid email address is required." });
+  }
+  if (!message || !message.trim()) {
+    return res.status(400).json({ error: "Message is required." });
+  }
+  if (message.length > 500) {
+    return res.status(400).json({ error: "Message must be 500 characters or less." });
   }
 
   try {

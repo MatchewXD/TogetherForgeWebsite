@@ -9,27 +9,31 @@ function Header() {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <nav className="header-container">
       <div className="header-logo">
-        <Link to="/">Twitchy Games</Link>
+        <Link to="/" onClick={closeMenu}>Twitchy Games</Link>
       </div>
       <button className="menu-toggle" onClick={toggleMenu}>
         ☰
       </button>
       <ul className={`nav-list ${menuOpen ? "open" : ""}`}>
-        <li><Link to="/" className="nav-link">Home</Link></li>
-        <li><Link to="/about" className="nav-link">About</Link></li>
-        <li><Link to="/contact" className="nav-link">Contact</Link></li>
-        <li><Link to="/community" className="nav-link">Community</Link></li>
-        <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
-        <li><Link to="/ideaform" className="nav-link">Share Ideas</Link></li>
-        <li><Link to="/login" className="nav-link">Login</Link></li>
-        <li><Link to="/projects" className="nav-link">Projects</Link></li>
-        <li><Link to="/faq" className="nav-link">FAQ</Link></li>
-        <li><Link to="/whatsnew" className="nav-link">What's New</Link></li>
-        <li><Link to="/interactivedemo" className="nav-link">Interactive Demos</Link></li>
-        <li><Link to="/feedback" className="nav-link">Feedback</Link></li>
+        <li><Link to="/" className="nav-link" onClick={closeMenu}>Home</Link></li>
+        <li><Link to="/about" className="nav-link" onClick={closeMenu}>About</Link></li>
+        <li><Link to="/contact" className="nav-link" onClick={closeMenu}>Contact</Link></li>
+        <li><Link to="/community" className="nav-link" onClick={closeMenu}>Community</Link></li>
+        <li><Link to="/dashboard" className="nav-link" onClick={closeMenu}>Dashboard</Link></li>
+        <li><Link to="/ideaform" className="nav-link" onClick={closeMenu}>Share Ideas</Link></li>
+        <li><Link to="/login" className="nav-link" onClick={closeMenu}>Login</Link></li>
+        <li><Link to="/projects" className="nav-link" onClick={closeMenu}>Projects</Link></li>
+        <li><Link to="/faq" className="nav-link" onClick={closeMenu}>FAQ</Link></li>
+        <li><Link to="/whatsnew" className="nav-link" onClick={closeMenu}>What's New</Link></li>
+        <li><Link to="/interactivedemo" className="nav-link" onClick={closeMenu}>Interactive Demos</Link></li>
+        <li><Link to="/feedback" className="nav-link" onClick={closeMenu}>Feedback</Link></li>
       </ul>
     </nav>
   );

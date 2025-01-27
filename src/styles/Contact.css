@@ -72,3 +72,9 @@
   color: #28a745;
   text-align: center;
 }
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
