@@ -7,8 +7,10 @@ const userRouter = require("./routes/users");
 const feedbackRouter = require("./routes/feedback");
 const votes = require("./routes/votes");
 const contact = require("./routes/contact");
+const faq = require("./routes/faq");
 
 const app = express();
+const { dbHealthcheck, dbQuery } = require('./db');
 
 app.use(express.json());
 app.use(cors());
@@ -19,9 +21,34 @@ app.use("/api/users", userRouter);
 app.use("/api/feedback", feedbackRouter);
 app.use("/api/votes", votes);
 app.use("/api/contact", contact);
+app.use("/api/faqs", faq);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Twitchy Games API!");
+});
+
+app.get('/api/db/health', async (_req, res) => {
+  try {
+    const ok = await dbHealthcheck();
+    res.json({ ok });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+app.get('/api/db/time', async (_req, res) => {
+  try {
+    const r = await dbQuery('SELECT NOW() AS now;');
+    res.json(r.rows[0]);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post("/api/ideas", async (req, res) => {
+  const { type, description } = req.body;
+  console.log("New idea:", type, description);
+  res.status(200).json({ message: "Idea received" });
 });
 
 app.listen(PORT, () => {
