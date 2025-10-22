@@ -1,14 +1,16 @@
-// server/db.js (CommonJS)
-require('dotenv').config();
 const { Pool } = require('pg');
+const path = require('path');
+require('dotenv').config({
+  path: path.resolve(__dirname, '.env'),
+  quiet: true
+});
 
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: Number(process.env.DB_PORT) || 5432,
-  // ssl: { rejectUnauthorized: false } // enable only if your host requires SSL
+  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
+  database: process.env.DB_NAME,
 });
 
 pool.on('error', (err) => {
@@ -17,16 +19,11 @@ pool.on('error', (err) => {
 
 async function dbQuery(text, params) {
   const start = Date.now();
-  try {
-    const res = await pool.query(text, params);
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('dbQuery:', { text, ms: Date.now() - start });
-    }
-    return res;
-  } catch (err) {
-    console.error('DB ERROR:', err.message);
-    throw err;
+  const res = await pool.query(text, params);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('dbQuery:', { text, ms: Date.now() - start });
   }
+  return res;
 }
 
 async function dbHealthcheck() {
@@ -34,4 +31,9 @@ async function dbHealthcheck() {
   return r.rows[0]?.ok === 1;
 }
 
-module.exports = { pool, dbQuery, dbHealthcheck };
+module.exports = {
+  query: dbQuery,
+  dbQuery,
+  dbHealthcheck,
+  pool,
+};

@@ -1,82 +1,74 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { createIdea } from '../api';
+import LatestIdeas from '../components/LatestIdeas';
 
 function IdeaForm() {
-  const [formData, setFormData] = useState({
-    type: "Full Game",
-    description: "",
-  });
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  const [status, setStatus] = useState("");
-
-  // handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // handle form submit
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setStatus("Submitting...");
+    setSubmitting(true);
+    setSuccessMsg('');
+    setErrorMsg('');
 
     try {
-      const res = await fetch("/api/ideas", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        setStatus("✅ Idea submitted successfully!");
-        setFormData({ type: "Full Game", description: "" });
-      } else {
-        setStatus("❌ Something went wrong. Try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting idea:", error);
-      setStatus("❌ Network error.");
+      const created = await createIdea({ title: title.trim(), description: description.trim() });
+      setSuccessMsg(`Idea submitted! (id: ${created.id})`);
+      setTitle('');
+      setDescription('');
+      setRefreshKey(k => k + 1); // <— trigger LatestIdeas refresh
+    } catch (err) {
+      setErrorMsg(err.message || 'Failed to submit idea.');
+    } finally {
+      setSubmitting(false);
     }
-  };
+  }
+
+  const disabled = submitting || !title.trim() || !description.trim();
 
   return (
-    <div>
-      <h1>Submit your idea</h1>
-      <form onSubmit={handleSubmit}>
+    <>
+      <form onSubmit={handleSubmit} style={{ maxWidth: 600, margin: '2rem auto', display: 'grid', gap: '0.75rem' }}>
+        <h2>Submit an Idea</h2>
         <label>
-          Type of Idea
-          <select
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
+          Title
+          <input
+            type="text"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="Short title"
             required
-          >
-            <option value="Full Game">Full Game</option>
-            <option value="Mechanic">Mechanic</option>
-            <option value="Art Concept">Art Concept</option>
-            <option value="Story Idea">Story Idea</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
-
-        <br />
-
-        <label>
-          Idea Description:
-          <textarea
-            name="description"
-            placeholder="Describe your idea here"
-            value={formData.description}
-            onChange={handleChange}
-            required
+            style={{ width: '100%', padding: '0.5rem' }}
           />
         </label>
 
-        <br />
-        <button type="submit">Submit Idea</button>
+        <label>
+          Description
+          <textarea
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            placeholder="Describe your idea…"
+            required
+            rows={6}
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </label>
+
+        <button type="submit" disabled={disabled} style={{ padding: '0.75rem', cursor: disabled ? 'not-allowed' : 'pointer' }}>
+          {submitting ? 'Submitting…' : 'Submit'}
+        </button>
+
+        {successMsg && <p style={{ color: 'green' }}>{successMsg}</p>}
+        {errorMsg && <p style={{ color: 'crimson' }}>{errorMsg}</p>}
       </form>
 
-      <p>{status}</p>
-    </div>
+      <LatestIdeas refreshKey={refreshKey} />
+    </>
   );
 }
 
