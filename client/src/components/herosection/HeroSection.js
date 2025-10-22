@@ -10,7 +10,7 @@ const HeroSection = () => {
       </h1>
 
       <p className="hero-mission">
-        Twitchy Games is dedicated to creating games that bring people together through collaboration creativity, and community-driven ideas.
+        Together Forge is dedicated to creating games that bring people together through collaboration creativity, and community-driven ideas.
       </p>
 
       <div>

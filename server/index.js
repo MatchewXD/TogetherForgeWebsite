@@ -25,7 +25,7 @@ app.use("/api/contact", contact);
 app.use("/api/faqs", faq);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Twitchy Games API!");
+  res.send("Welcome to the Together Forge API!");
 });
 
 app.get('/api/health', async (_req, res) => {

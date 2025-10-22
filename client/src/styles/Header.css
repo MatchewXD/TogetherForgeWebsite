@@ -13,17 +13,13 @@
 .header-logo a {
   color: white;
   text-decoration: none;
-  /* Removes the underline */
   font-size: 1.5rem;
-  /* Adjust size */
   font-weight: bold;
   transition: color 0.3s ease;
-  /* Smooth hover effect */
 }
 
 .header-logo a:hover {
   color: #93c5fd;
-  /* Light blue on hover */
 }
 
 .menu-toggle {

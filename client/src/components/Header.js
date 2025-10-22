@@ -16,7 +16,7 @@ function Header() {
   return (
     <nav className="header-container">
       <div className="header-logo">
-        <Link to="/" onClick={closeMenu}>Twitchy Games</Link>
+        <Link to="/" onClick={closeMenu}>Together Forge</Link>
       </div>
       <button className="menu-toggle" onClick={toggleMenu}>
         ☰

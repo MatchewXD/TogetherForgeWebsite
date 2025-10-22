@@ -25,7 +25,7 @@ function Footer() {
             <FaTwitter />
           </a>
         </div>
-        <p>&copy; 2025 Twitchy Games. All Rights Reserved.</p>
+        <p>&copy; 2025 Together Forge. All Rights Reserved.</p>
       </div>
     </footer>
   );

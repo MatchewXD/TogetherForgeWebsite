@@ -16,7 +16,7 @@ const CommunityHighlights = () => {
         <div className="highlight-card">
           <h3 className="highlight-title">John Smith</h3>
           <p className="highlight-description">
-            "Twitchy Games helped me connect with other developers and share my passion for gaming. The community is incredible!"
+            "Together Forge helped me connect with other developers and share my passion for gaming. The community is incredible!"
           </p>
         </div>
       </div>

@@ -48,7 +48,7 @@ const Projects = () => {
 
       <section className="projects-call-to-action">
         <h2>Get Involved</h2>
-        <p>Join us in shaping the future of Twitchy Games.</p>
+        <p>Join us in shaping the future of Together Forge.</p>
         <div className="projects-buttons">
           <a href="/ideaform" className="projects-button">Share Your Ideas</a>
           <a href="/community" className="projects-button">Join the Community</a>

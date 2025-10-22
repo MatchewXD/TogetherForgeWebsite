@@ -7,13 +7,13 @@ const About = () => {
     <div className="about-container">
       <h1 className="about-hero-title">Building Games Together for Everyone</h1>
       <p className="about-hero-subtext">
-        Discover the mission, vision, and values driving Twitchy Games forward.
+        Discover the mission, vision, and values driving Together Forge forward.
       </p>
 
       <section className="about-section">
         <h2>Mission Statement</h2>
         <p>
-          Twitchy Games organizes and supports the development of games created
+          Together Forge organizes and supports the development of games created
           collaboratively by gamers, streamers, and massive online communities.
           We empower creativity, foster teamwork, and prioritize inclusivity to
           build games that unite people, celebrate collaboration, and deliver
@@ -25,7 +25,7 @@ const About = () => {
         <h2>Vision Statement</h2>
         <p>
           To redefine gaming as a global force for unity, creativity, and
-          collaboration. Twitchy Games envisions a future where players and
+          collaboration. Together Forge envisions a future where players and
           creators work together to craft extraordinary games that connect
           people across the world. By embracing community-driven innovation and
           remaining free from corporate agendas, we aim to create a thriving
@@ -39,7 +39,7 @@ const About = () => {
         <p>
           We build games for one reason: to make great games that bring people
           together. Whether you’re a gamer, a creator, or someone with a great
-          idea, Twitchy Games is your platform to collaborate, contribute, and
+          idea, Together Forge is your platform to collaborate, contribute, and
           create.
         </p>
         <p>
@@ -54,7 +54,7 @@ const About = () => {
       <section className="about-section">
         <h2>Why We’re Different</h2>
         <p>
-          At Twitchy Games, we believe games should be made for players—not
+          At Together Forge, we believe games should be made for players—not
           profit. Unlike modern AAA studios that prioritize monetization over
           fun, we’re committed to creating games that are enjoyable, meaningful,
           and free from the endless grind of corporate-driven practices.
@@ -70,7 +70,7 @@ const About = () => {
       <section className="about-section">
         <h2>Founder's Note</h2>
         <p>
-          At Twitchy Games, our goal is simple: to create games that bring
+          At Together Forge, our goal is simple: to create games that bring
           people together and reflect the passions of the communities behind
           them. We're excited to have you join us on this journey to reshape
           gaming for the better.
