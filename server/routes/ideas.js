@@ -42,7 +42,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get('/', (req, res) => res.json({ ok: true, hint: 'POST here to create an idea' }));
-
-
 module.exports = router;

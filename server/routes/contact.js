@@ -30,8 +30,8 @@ router.post("/", async (req, res) => {
     });
 
     const mailOptions = {
-      from: "contacttwitchygames@gmail.com",
-      to: "contacttwitchygames@gmail.com",
+      from: "contacttogetherforge@gmail.com",
+      to: "contacttogetherforge@gmail.com",
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       text: `You received a new message:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,

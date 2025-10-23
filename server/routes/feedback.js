@@ -1,14 +1,35 @@
-const express = require("express");
+// server/routes/feedback.js
+const express = require('express');
 const router = express.Router();
+const db = require('../db');
 
-let feedback = [];
+router.post('/', async (req, res) => {
+  try {
+    const { message, user_id = null } = req.body;
 
-router.post("/", (req, res) => {
-  const { feedbackType, message, email } = req.body;
-  const newFeedback = { id: feedback.length + 1, feedbackType, message, email };
-  feedback.push(newFeedback);
-  // console.log("Feedback Received:", { feedbackType, message, email });
-  res.status(201).json({ message: "Feedback submitted successfully", feedback: newFeedback });
+    // Validation
+    if (!message || !message.trim()) {
+      return res.status(400).json({ error: 'Message is required.' });
+    }
+    if (message.length > 500) {
+      return res.status(400).json({ error: 'Message must be 500 characters or less.' });
+    }
+
+    const result = await db.query(
+      `INSERT INTO feedback (user_id, message)
+       VALUES ($1, $2)
+       RETURNING id, user_id, message, created_at`,
+      [user_id, message.trim()]
+    );
+
+    return res.status(201).json({
+      message: 'Feedback submitted successfully',
+      feedback: result.rows[0],
+    });
+  } catch (err) {
+    console.error('POST /api/feedback error:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 module.exports = router;
